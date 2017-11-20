@@ -1,17 +1,12 @@
 require 'rakyll'
-
-class Event
-  def body
-    'some-body'
-  end
-end
+require './parses.rb'
 
 Rakyll.dsl do
   copy 'assets/*'
   copy 'base_data/images/*/*'
 
   create 'events.html' do
-    @events = 10.times.map { Event.new }
+    @events = []
     apply 'events.html.erb'
     apply 'default.html.erb'
   end
