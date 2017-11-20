@@ -1,0 +1,3 @@
+[submodule "base_data"]
+	path = base_data
+	url = git@github.com:kumano-dormitory/Kumanofes2017data.git
