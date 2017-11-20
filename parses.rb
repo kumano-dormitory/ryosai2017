@@ -10,7 +10,7 @@ class Event
     end
     {
       regulars: events.select { |event| event.type == 'regular' },
-      guerrilla: events.select { |event| event.type == 'guerrilla' },
+      guerrillas: events.select { |event| event.type == 'guerrilla' },
       permanents: events.select { |event| event.type == 'permanent' }
     }
   end
@@ -22,6 +22,14 @@ class Event
     @period = period
     @description = description
     @picture_path = picture_path
+  end
+
+  def description
+    @description || '？'
+  end
+
+  def place
+    @place || '？'
   end
 end
 
@@ -44,5 +52,19 @@ class Period
   def initialize(start_at, end_at)
     @start_at = start_at
     @end_at = end_at
+  end
+
+  def formatted
+    if @start_at.nil? && @end_at.nil?
+      '？'
+    else
+      format_string = '%m月%d日 %H:%M'
+      "#{@start_at&.strftime(format_string)} 〜 #{@end_at&.strftime(format_string)}"
+    end
+  end
+
+  def day_formatted
+    youbi = %w[日 月 火 水 木 金 土][@start_at.wday]
+    "#{@start_at.month}月#{@start_at.day.to_s.rjust(2, '0')}日（#{youbi}）"
   end
 end

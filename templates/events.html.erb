@@ -4,9 +4,9 @@
       <hr />
       <ul>
           <li>場所：<%= event.place %></li>
-          <li>時間帯：<%= event.period %></li>
-          <li><%= event.description %></li>
+          <li>時間帯：<%= event.period.formatted %></li>
+          <li>説明：<%= event.description %></li>
       </ul>
-      <img src="<%= event.picture_path %>" class="event-image"/>
+      <img src="<%= IMAGE_BASE_PATH %>/<%= event.picture_path %>" class="event-image"/>
   </p>
 <% end %>

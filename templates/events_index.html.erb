@@ -5,12 +5,11 @@
             <li><a href="./guerrilla.html">ゲリラ企画</a></li>
             <li>一般企画：
                 <ul>
-                <% @normals.each do |day| %>
-                    <li><a href="./<%= day.name %>.html"><%= day.name %></a></li>
+                <% @regulars_by_day.each do |day, _| %>
+                    <li><a href="./<%= day %>.html"><%= day %></a></li>
                 <% end %>
                 </ul>
             </li>
         </ul>
     </div>
-    <img src="/images/logo.jpg" class="logo" />
 </div>
