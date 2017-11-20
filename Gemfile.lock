@@ -1,12 +1,18 @@
+PATH
+  remote: /Users/sangenya/dev/rakyll
+  specs:
+    rakyll (0.1.1)
+      redcarpet (~> 3.4)
+      rmagick (~> 2.12)
+      yaml-front-matter (~> 0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
     filewatcher (1.0.1)
       trollop (~> 2.1, >= 2.1.2)
-    rakyll (0.1.1)
-      redcarpet (~> 3.4)
-      yaml-front-matter (~> 0.0.1)
     redcarpet (3.4.0)
+    rmagick (2.16.0)
     trollop (2.1.2)
     yaml-front-matter (0.0.1)
 
@@ -15,7 +21,7 @@ PLATFORMS
 
 DEPENDENCIES
   filewatcher
-  rakyll
+  rakyll!
 
 BUNDLED WITH
    1.16.0.pre.3

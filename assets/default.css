@@ -70,11 +70,18 @@ div.info {
     font-style: italic;
 }
 
-p.foreword {
-    margin-bottom: 0px;
+div.foreword {
+}
+
+div.foreword > p {
+    margin-bottom: 1em;
     margin-top: 0px;
     text-indent: 1em;
-    font-family: "Times New Roman", "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "メイリオ", Meiryo, serif;
+}
+
+div.foreword > ul {
+    list-style: none;
+    padding-left: 1em;
 }
 
 p#author {

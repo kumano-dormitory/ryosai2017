@@ -11,7 +11,14 @@ regulars_by_day = regulars.group_by { |regular| regular.period.day_formatted }
 
 Rakyll.dsl do
   copy 'assets/*'
+  #minify 'base_data/images/*/*', width: 600, grayscale: true
   copy 'base_data/images/*/*'
+
+  ['index.html', 'contact.html', 'access.html', 'contrib.html'].each do |static_html_filename|
+    match static_html_filename do
+      apply 'default.html.erb'
+    end
+  end
 
   create 'events.html' do
     @title = '企画一覧'
