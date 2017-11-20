@@ -24,12 +24,28 @@ class Event
     @picture_path = picture_path
   end
 
+  def period_formatted
+    if regular?
+      period.formatted
+    elsif permanent?
+      '常時開催'
+    else
+      '？'
+    end
+  end
+
   def description
     @description || '？'
   end
 
   def place
     @place || '？'
+  end
+
+  ['regular', 'guerrilla', 'permanent'].each do |type_string|
+    define_method :"#{type_string}?" do
+      type == type_string
+    end
   end
 end
 
@@ -55,12 +71,8 @@ class Period
   end
 
   def formatted
-    if @start_at.nil? && @end_at.nil?
-      '？'
-    else
-      format_string = '%m月%d日 %H:%M'
-      "#{@start_at&.strftime(format_string)} 〜 #{@end_at&.strftime(format_string)}"
-    end
+    format_string = '%m月%d日 %H:%M'
+    "#{@start_at&.strftime(format_string)} 〜 #{@end_at&.strftime(format_string)}"
   end
 
   def day_formatted
