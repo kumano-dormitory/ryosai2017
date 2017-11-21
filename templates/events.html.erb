@@ -1,6 +1,15 @@
-<% @events.each do |event| %>
+<% @events.each.with_index do |event, index| %>
   <p style="margin: 0px auto 50px auto">
-      <h3><%= event.title %></h3>
+      <h3 id='event<%= index %>'>
+        <a href='#event<%= index %>' style='text-decoration: none; color: black;'>
+            <i class="fa fa-link fa-lg" aria-hidden="true"></i>
+        </a>
+        <%= event.title %>
+        <a id='event<%= index %>-anchor' target="_blank">
+          <i class="fa fa-twitter-square fa-lg" style='color: black;' aria-hidden="true"></i>
+        </a>
+
+      </h3>
       <hr />
       <ul>
           <li>場所：<%= event.place %></li>
@@ -10,5 +19,20 @@
       <% if !event.picture_path.nil? %>
         <img src="/ryosai2017/<%= IMAGE_BASE_PATH %>/<%= event.picture_path %>" class="event-image"/>
       <% end %>
+      <script>
+        (function(){
+          const title = '<%= event.title %>'
+          const anchorId = 'event<%= index %>-anchor'
+          const eventId = 'event<%= index %>'
+          const baseTweetUrl = 'https://twitter.com/share'
+
+          const text = `熊野寮祭「${title}」`
+          const targetUrl = `https://${document.location.host}${document.location.pathname}#${eventId}`
+          const tweetUrl = `${baseTweetUrl}?url=${encodeURIComponent(targetUrl)}&text=${encodeURIComponent(text)}&via=kumanofes&lang=ja&related=kumanofes&hashtags=kumanofes2017`
+
+          const anchor = document.getElementById(anchorId);
+          anchor.href = tweetUrl
+        })()
+      </script>
   </p>
 <% end %>

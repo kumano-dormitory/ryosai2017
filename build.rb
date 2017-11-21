@@ -1,5 +1,6 @@
 require 'rakyll'
 require './parses.rb'
+require 'uri'
 
 IMAGE_BASE_PATH = 'base_data'
 CSV_PATH = './base_data/list.csv'
