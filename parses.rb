@@ -70,6 +70,10 @@ class Period
     @end_at = end_at
   end
 
+  def date
+    @start_at.to_date
+  end
+
   def formatted
     format_string = '%m月%d日 %H:%M'
     "#{@start_at&.strftime(format_string)} 〜 #{@end_at&.strftime(format_string)}"
@@ -77,6 +81,6 @@ class Period
 
   def day_formatted
     youbi = %w[日 月 火 水 木 金 土][@start_at.wday]
-    "#{@start_at.month}月#{@start_at.day.to_s.rjust(2, '0')}日（#{youbi}）"
+    date.strftime("%m月%d日（#{youbi}）")
   end
 end
