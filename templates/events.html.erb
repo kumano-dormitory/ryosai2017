@@ -11,18 +11,21 @@
         <div>
           <%= event.title %>
         </div>
-        <div style='margin-left: auto;'>
+        <div style='margin-left: auto; margin-right: 1em;'>
           <a id='event<%= index %>-anchor' target="_blank">
             <i class="fa fa-twitter-square fa-lg" style='color: black;' aria-hidden="true"></i>
           </a>
         </div>
       </h3>
       <hr />
-      <ul>
-          <li>場所：<%= event.place %></li>
-          <li>時間帯：<%= event.period_formatted %></li>
-          <li>説明：<%= event.description %></li>
-      </ul>
+      <dl>
+          <dt style='font-weight: bold;'>場所</dt><dd><%= event.place %></dd>
+          <dt style='font-weight: bold;'>時間帯</dt><dd><%= event.period_formatted %></dd>
+          <dt style='font-weight: bold;'>説明</dt><dd><%= event.description %></dd>
+          <% if !event.url.nil? %>
+          <dt style='font-weight: bold;'>URL</dt><dd><a href='<%= event.url %>'><%= event.url %></a></dd>
+          <% end %>
+      </dl>
       <% if !event.picture_path.nil? %>
         <img src="/ryosai2017/<%= IMAGE_BASE_PATH %>/<%= event.picture_path %>" class="event-image"/>
       <% end %>

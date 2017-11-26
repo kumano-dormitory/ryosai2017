@@ -1,12 +1,12 @@
 require 'csv'
 
 class Event
-  attr_reader :type, :title, :place, :period, :description, :picture_path
+  attr_reader :type, :title, :place, :period, :description, :picture_path, :url
 
   def self.create_list_from_csv(csv_filename)
     events = CSV.read(csv_filename, headers: true, encoding: 'BOM|UTF-8').map(&:to_h).map do |row|
       period = Period.create_from_day_and_time(row['start_day']&.strip, row['start_at']&.strip, row['end_day']&.strip, row['end_at']&.strip)
-      self.new(row['type']&.strip, row['title']&.strip, row['where']&.strip, period, row['detail']&.strip, row['file_path']&.strip)
+      self.new(row['type']&.strip, row['title']&.strip, row['where']&.strip, period, row['detail']&.strip, row['file_path']&.strip, row['url']&.strip)
     end
     {
       regulars: events.select { |event| event.type == 'regular' },
@@ -15,13 +15,14 @@ class Event
     }
   end
 
-  def initialize(type, title, place, period, description, picture_path)
+  def initialize(type, title, place, period, description, picture_path, url)
     @type = type
     @title = title
     @place = place
     @period = period
     @description = description
     @picture_path = picture_path
+    @url = url
   end
 
   def period_formatted
