@@ -3,13 +3,11 @@
 <% @events.each.with_index do |event, index| %>
   <p style="margin: 0px auto 50px auto">
       <h3 id='event<%= index %>' style='width: 100%; display: flex;'>
-        <div style='margin-right: 20px;'>
-          <a href='#event<%= index %>' style='text-decoration: none; color: black;'>
-              <i class="fa fa-link fa-lg" aria-hidden="true"></i>
-          </a>
-        </div>
         <div>
-          <%= event.title %>
+          <a href='#event<%= index %>' style='text-decoration: none; color: black;'>
+            <i class="fa fa-paragraph" aria-hidden="true"></i>
+            <%= event.title %>
+          </a>
         </div>
         <div style='margin-left: auto; margin-right: 1em;'>
           <a id='event<%= index %>-anchor' target="_blank">

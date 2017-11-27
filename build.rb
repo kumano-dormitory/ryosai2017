@@ -17,6 +17,7 @@ end
 
 Rakyll.dsl root_path: 'ryosai2017', watch: ARGV.include?('--watch') do
   copy 'assets/*'
+  copy 'base_data/*.jpg'
   minify 'base_data/images/*/*', width: 600, grayscale: true
 
   ['index.html', 'contact.html', 'access.html', 'contrib.html'].each do |static_html_filename|
