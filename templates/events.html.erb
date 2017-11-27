@@ -1,16 +1,16 @@
 <h2><%= @title %></h2>
 
-<% @events.each.with_index do |event, index| %>
+<% @events.each do |event| %>
   <p style="margin: 0px auto 50px auto">
-      <h3 id='event<%= index %>' style='width: 100%; display: flex;'>
+      <h3 id='event<%= event.id %>' style='width: 100%; display: flex;'>
         <div>
-          <a href='#event<%= index %>' style='text-decoration: none; color: black;'>
+          <a href='#event<%= event.id %>' style='text-decoration: none; color: black;'>
             <i class="fa fa-paragraph" aria-hidden="true"></i>
             <%= event.title %>
           </a>
         </div>
         <div style='margin-left: auto; margin-right: 1em;'>
-          <a id='event<%= index %>-anchor' target="_blank">
+          <a id='event<%= event.id %>-anchor' target="_blank">
             <i class="fa fa-twitter-square fa-lg" style='color: black;' aria-hidden="true"></i>
           </a>
         </div>
@@ -30,8 +30,8 @@
       <script>
         (function(){
           const title = '<%= event.title %>'
-          const anchorId = 'event<%= index %>-anchor'
-          const eventId = 'event<%= index %>'
+          const anchorId = 'event<%= event.id %>-anchor'
+          const eventId = 'event<%= event.id %>'
           const baseTweetUrl = 'https://twitter.com/share'
 
           const text = `熊野寮祭「${title}」`

@@ -5,6 +5,10 @@ require 'uri'
 IMAGE_BASE_PATH = 'base_data'
 CSV_PATH = './base_data/list.csv'
 
+def all_events
+  Event.create_list_from_csv(CSV_PATH).values.reduce(:+)
+end
+
 def regulars
   Event.create_list_from_csv(CSV_PATH)[:regulars]
 end
@@ -20,14 +24,22 @@ Rakyll.dsl root_path: 'ryosai2017', watch: ARGV.include?('--watch') do
   copy 'base_data/*.jpg'
   minify 'base_data/images/*/*', width: 600, grayscale: true
 
-  ['index.html', 'contact.html', 'access.html', 'contrib.html'].each do |static_html_filename|
+  ['contact.html', 'access.html', 'contrib.html'].each do |static_html_filename|
     match static_html_filename do
       apply 'default.html.erb'
     end
   end
 
+  create 'index.html', dependencies: [CSV_PATH] do
+    @title = '熊野寮祭'
+    apply 'index.html.erb'
+    apply 'default.html.erb'
+  end
+
   create 'events.html', dependencies: [CSV_PATH] do
+    @permanents = permanents
     @regulars = regulars
+    @guerrillas = guerrillas
     @title = '企画一覧'
     apply 'events_index.html.erb'
     apply 'default.html.erb'
