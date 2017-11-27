@@ -2,14 +2,16 @@
 
 <div>
     <ul>
+        <% @regulars.group_by { |e| e.period.date }.each do |date, events| %>
         <li style='margin-bottom: 10px;'>
-            <a href='/ryosai2017/permanent.html'>常設企画</a>
+            <a href='/ryosai2017/<%= date %>.html'><%= date %></a>
             <ul>
-            <% @permanents.each do |event| %>
-                <li><a href='/ryosai2017/permanent.html#event<%= event.id %>'><%= event.title %></a></li>
+            <% events.each do |event| %>
+                <li><a href='/ryosai2017/<%= event.period.date %>.html#event<%= event.id %>'><%= event.title %></a></li>
             <% end %>
-            </ul>            
+            </ul>
         </li>
+        <% end %>
         <li style='margin-bottom: 10px;'>
             <a href='/ryosai2017/permanent.html'>ゲリラ企画</a>
             <ul>
@@ -18,15 +20,13 @@
             <% end %>
             </ul>            
         </li>
-        <% @regulars.group_by { |e| e.period.date }.each do |date, events| %>
         <li style='margin-bottom: 10px;'>
-            <a href='/ryosai2017/<%= date %>.html'><%= date %>の企画</a>
+            <a href='/ryosai2017/permanent.html'>常設企画</a>
             <ul>
-            <% events.each do |event| %>
-                <li><a href='/ryosai2017/<%= event.period.date %>.html#event<%= event.id %>'><%= event.title %></a></li>
+            <% @permanents.each do |event| %>
+                <li><a href='/ryosai2017/permanent.html#event<%= event.id %>'><%= event.title %></a></li>
             <% end %>
-            </ul>
+            </ul>            
         </li>
-        <% end %>
     </ul>
 </div>

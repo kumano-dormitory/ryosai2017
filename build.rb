@@ -49,7 +49,7 @@ Rakyll.dsl root_path: 'ryosai2017', watch: ARGV.include?('--watch') do
     @title = 'ゲリラ企画'
     @events = guerrillas
     apply 'events.html.erb'
-    apply 'default.html.erb'    
+    apply 'default.html.erb'
   end
 
   create 'permanent.html', dependencies: [CSV_PATH] do
